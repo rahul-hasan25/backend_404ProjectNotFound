@@ -41,8 +41,7 @@ Follow these steps to spin up the Django API backend:
    ```bash
    python -m venv venv
 
-## Activate the Virtual Environment:
-
+### Activate the Virtual Environment:
 * **Windows (CMD/Bash):** venv\Scripts\activate or source venv/Scripts/activate
 * **macOS/Linux:** source venv/bin/activate
 
@@ -62,4 +61,4 @@ Follow these steps to spin up the Django API backend:
 5. **Ignite the Local Development Server Engine:**
     ```bash
     python manage.py runserver
-## The server will successfully bind to: http://127.0.0.1:8000/
+### The server will successfully bind to: http://127.0.0.1:8000/
