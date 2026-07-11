@@ -1,11 +1,11 @@
-# 🐍 404 Project Not Found — Backend (Django & DRF)
+# ⚡ 404 Project Not Found — Backend (Django & DRF)
 
 > "Push boundaries. Build with style. Ensure components don’t break under pressure." 🚀
 This is the robust, secure, and production-ready backend engine for the 404 Project. Engineered using **Python**, **Django ORM**, and **Django REST Framework (DRF)**, this core manages database persistent states, JWT authentication lifecycles, structured Kanban task matrix manipulation, and binary multi-image annotation processing.
 
 ---
 
-## 🌋 The Chronology of Difficulties: Villains Defeated
+## 🎭 The Villains Faced & The Power of Friendship (Difficulties & Solutions)
 
 Building a highly adaptive API ledger using Django means running into performance walls and data format conflicts. Here is how we conquered the villains threatening our server stability:
 
@@ -21,44 +21,67 @@ Building a highly adaptive API ledger using Django means running into performanc
 * **The Villain:** Whenever frontend client nodes omitted a calendar date selection, incoming JSON payloads transmitted blank date strings (`""`), causing the backend SQLite layer to throw fatal schema validation errors.
 * **How We Overcame It:** We adjusted our custom `CustomUser` and `Task` model schemas, mapping explicit `blank=True, null=True` configurations across non-mandatory text, date, and image properties[cite: 10]. We also configured DRF validators to gracefully handle empty inputs, turning potential server crashes into clean, safe database entries.
 
+### 4. The Polygon Bulk-Save Database Bottleneck 🏎️
+* **The Villain:** In the Image Annotation setup, saving nodes one-by-one generated dozens of sequential HTTP POST requests for a single polygon shape. This caused massive overhead and database locking issues.
+* **How We Overcame It:** Overcame this by creating a dedicated atomic bulk-saving API endpoint (`/api/annotations/bulk-save/`). It drops outdated layer instances and recreates the polygon arrays inside a single transactional block (`transaction.atomic()`), maximizing database efficiency.
+
+### 5. Dynamic View Filtering Matrix 🗺️
+* **The Villain:** Querying tasks filtered by strict individual calendar dates while simultaneously handling multi-class slicing filters (`axial` vs `sagittal` views) for image collections caused slow ORM querying.
+* **How We Overcame It:** Optimized utilizing Django's select_related and prefetch_related structures, ensuring that pulling an image layer simultaneously loads its deep JSON annotation data structure safely without triggering an $N+1$ query vulnerability.
+
 ---
 
-## ⚙️ Tech Stack & Technical Specifications
+## 🛠️ Tech Stack & Environment
 
-* **Runtime Environment:** Python 3.11.x or higher
 * **Framework:** Django Web Framework & Django REST Framework (DRF)
 * **Authentication:** SimpleJWT (JSON Web Tokens)[cite: 18]
 * **Database Engine:** SQLite (Relational Storage Engine using Django ORM)
 * **Image Processing:** Pillow (Python Imaging Library)
+* **Language:** Python 3.10+ / 3.11+
+
+### Prerequisites
+* **Python Version:** `v3.10.x` or `v3.11.x`
+* **Virtual Environment Tool:** `venv`
 
 ---
 
-## 🚀 Step-by-Step Installation & Boot Guide
+## 🚀 Installation & Setup Steps
 
 Follow these steps to spin up the Django API backend:
 
-1. **Initialize a Isolated Python Virtual Environment:**
+1. **Clone the repository:**
    ```bash
+   git clone https://github.com/rahul-hasan25/backend_404ProjectNotFound
+
+2. **Create and Activate Virtual Environment:**
+   ```bash
+   # Windows
    python -m venv venv
+   .\venv\Scripts\activate
 
-### Activate the Virtual Environment:
-* **Windows (CMD/Bash):** venv\Scripts\activate or source venv/Scripts/activate
-* **macOS/Linux:** source venv/bin/activate
+   # macOS/Linux
+    python3 -m venv venv
+    source venv/bin/activate
 
-2. **Install Core System Dependencies:**
+
+3. **Install Core System Dependencies:**
     ```bash
     pip install django djangorestframework django-cors-headers djangorestframework-simplejwt pillow
 
-3. **Synchronize Database Schemas & Run Migrations:**
+4. **Install Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+
+5. **Run Database Migrations:**
     ```bash
     python manage.py makemigrations
     python manage.py migrate
 
-4. **Create an Admin Superuser (For Dashboard Management):**
+6. **Create Superuser (Admin Dashboard Access):**
     ```bash
     python manage.py createsuperuser
 
-5. **Ignite the Local Development Server Engine:**
+7. **Ignite the Local Development Server Engine:**
     ```bash
     python manage.py runserver
 ### The server will successfully bind to: http://127.0.0.1:8000/
