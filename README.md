@@ -41,9 +41,9 @@ Follow these steps to spin up the Django API backend:
    ```bash
    python -m venv venv
 
-    **Activate the Virtual Environment:**
-    * **Windows (CMD/Bash):** venv\Scripts\activate or source venv/Scripts/activate
-    * **macOS/Linux:** source venv/bin/activate
+### Activate the Virtual Environment:
+* **Windows (CMD/Bash):** venv\Scripts\activate or source venv/Scripts/activate
+* **macOS/Linux:** source venv/bin/activate
 
 2. **Install Core System Dependencies:**
     ```bash
