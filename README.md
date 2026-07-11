@@ -1,4 +1,3 @@
-```markdown
 # 🐍 404 Project Not Found — Backend (Django & DRF)
 
 > "Push boundaries. Build with style. Ensure components don’t break under pressure." 🚀
