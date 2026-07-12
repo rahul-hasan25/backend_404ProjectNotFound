@@ -15,7 +15,12 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['rahulhasan.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [
+    'rahulhasan.pythonanywhere.com',
+    'frontend-404-project-not-found.vercel.app',
+    'localhost',
+    '127.0.0.1'
+]
 
 
 
@@ -49,6 +54,12 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "https://frontend-404-project-not-found.vercel.app",
     "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://frontend-404-project-not-found.vercel.app",
+    "https://rahulhasan.pythonanywhere.com"
 ]
 
 CORS_ALLOW_CREDENTIALS = True
