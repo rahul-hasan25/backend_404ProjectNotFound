@@ -50,7 +50,7 @@ class ForgetPasswordView(APIView):
             uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
             token  = default_token_generator.make_token(user)
             
-            reset_link = f"http://localhost:3000/reset-password?uid={uidb64}&token={token}"
+            reset_link = f"frontend-404-project-not-found.vercel.app/reset-password?uid={uidb64}&token={token}"
             
             subject = "404 Workspace - Security Clearance Reset Request"
             message = f"""Hello Operator,
